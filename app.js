@@ -1,7 +1,9 @@
+
+const path = require('path');
+const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
-const http = require('http');
-const path = require('path');
+
 
 const app = express();
 const server = http.createServer(app);
@@ -16,14 +18,16 @@ const {
 
 app.use(express.static(path.join(__dirname, 'frontend')));
 
-io.on('connection', (socket) => {
+io.on('connection', socket => {
+    console.log(`Server is running on port`);
     socket.on('joinRoom', ({ username, room }) => {
-        const socketid  = socket.id;
-        const user = { socketid, username, room };
-        addUser(user);
-        socket.join(room);
-        socket.emit('message', `${username} has joined the room`);
-        socket.broadcast.to(room).emit('message', `${username} has joined the room`);
+        const user = addUser(socket.id, username, room);
+        socket.join(user.room);
+        const temp = {username: "ChatBot", text: `Hi ${user.username}, welcome to room ${user.room}`};
+        const temp2 = {username: "ChatBot", text: `${user.username} has joined the room`};
+        
+        socket.emit('message', temp);
+        socket.broadcast.to(user.room).emit('message', temp2);
 
         io.to(room).emit('roomData', {
             room: room,
@@ -32,11 +36,13 @@ io.on('connection', (socket) => {
     });
     socket.on('chatMessage', msg => {
         const user = getCurrentUser(socket.id);
-    
-        io.to(user.room).emit('message', user.username, msg);
+      console.log(user);
+        const temp = { username: user.username, text: msg };
+        io.to(user.room).emit('message', temp);
       });
       socket.on('disconnect', () => {
         const user = removeUser(socket.id);
+
         if (user) {
           io.to(user.room).emit('message', `${user.username} has left the room`);
           io.to(user.room).emit('roomData', {

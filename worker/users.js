@@ -1,7 +1,9 @@
 const  users = [];
 
-function addUser(user){
+function addUser(id, username, room){
+    const user = {  id,username,room};
     users.push(user);
+    return user;
 }
 
 function getUsersInRoom(room){
