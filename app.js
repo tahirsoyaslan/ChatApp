@@ -7,6 +7,13 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+const {
+    addUser,
+    removeUser,
+    getUsersInRoom,
+    getCurrentUser
+} = require('./worker/users');
+
 app.use(express.static(path.join(__dirname, 'frontend')));
 
 io.on('connection', (socket) => {
@@ -23,6 +30,22 @@ io.on('connection', (socket) => {
             users: getUsersInRoom(room)
         });
     });
+    socket.on('chatMessage', msg => {
+        const user = getCurrentUser(socket.id);
+    
+        io.to(user.room).emit('message', user.username, msg);
+      });
+      socket.on('disconnect', () => {
+        const user = removeUser(socket.id);
+        if (user) {
+          io.to(user.room).emit('message', `${user.username} has left the room`);
+          io.to(user.room).emit('roomData', {
+            room: user.room,
+            users: getUsersInRoom(user.room)
+          });
+        }
+      }
+    );
 });
 
 const PORT = process.env.PORT || 3000;
