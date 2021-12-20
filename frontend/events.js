@@ -13,7 +13,7 @@ const socket = io();
 socket.emit('joinRoom', { username, room });
 
 socket.on('roomData', ({ room, users }) => {
-    outputRoomName(room);
+    outputRoomName("Room:" + room);
     outputUsers(users);
 });
 

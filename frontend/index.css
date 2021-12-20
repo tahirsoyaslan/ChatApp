@@ -1,0 +1,92 @@
+body, html {
+        height: 100%;
+}
+
+body {
+        font-family: 'Open Sans';
+        font-weight: 100;
+        display: flex;
+        overflow: hidden;
+        background-color: #3f3f3f;
+}
+
+/* FORM */
+
+form {
+        margin: 0;
+        margin-block-end: 0;
+}
+
+.form-all {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width:430px;
+        padding: 35px 35px 35px 35px;
+        border-radius: 40px;
+        background: #3f3f3f;
+        box-shadow: 13px 13px 20px #272727,
+                -13px -13px 20px #353535;        
+}
+
+.fields input {
+        border: none;
+        outline:none;
+        background: none;
+        font-size: 18px;
+        color: #ffffff;
+        padding:20px 20px 20px 20px;
+        width: 100%;
+}
+
+.username, .room {
+        margin-bottom: 30px;
+        border-radius: 25px;
+        box-shadow: inset 8px 8px 8px #363636,
+              inset -8px -8px 8px #484848;
+}
+
+.join-button {
+        outline: none;
+        border:none;
+        cursor: pointer;
+        width:100%;
+        height: 60px;
+        border-radius: 30px;
+        font-size: 18px;
+        font-weight: 700;
+        font-family: 'Lato', sans-serif;
+        color:#fff;
+        text-align: center;
+        background: #3f3f3f;
+        box-shadow: 8px 8px 8px #363636,
+                   -8px -8px 8px #484848;
+        transition: all 0.5s;
+}
+
+.join-button:hover {
+        background:#3f3f3f;
+        box-shadow: 6px 6px 6px #363636,
+                   -6px -6px 6px #484848;
+}
+
+.join-button:active {
+        background:#3f3f3f;
+        box-shadow: inset 8px 8px 8px #363636,
+                    inset -8px -8px 8px #484848;
+}
+      
+.link {
+        padding-top: 20px;
+        text-align: center;
+}
+
+.link a {
+        text-decoration: none;
+        color:#aaa;
+        font-size: 15px;
+}
+
+/* ROOM */
+

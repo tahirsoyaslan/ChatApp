@@ -1,39 +1,45 @@
 <html>
   <head>
     <title>ChatApp - Room</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="room.css">
   </head>
     <body>
+      <div class="main-container">
         <div>
-            <h2>Room: </h2>
-            <h2 id="room-name">temp</h2>
-            <h2> Users</h2>
-            <ul id="users">
-              <li>farid</li>
-              <li>tahir</li>
-              <li>simge</li>
-              <li>saidcan</li>
-            </ul>
+          <h2 class="room-name" id="room-name">Room: temp</h2>
+        </div>
+        <div>
+          <h2>Users</h2>
+          <ul class="users" id="users">
+            <li>farid</li>
+            <li>tahir</li>
+            <li>simge</li>
+            <li>saidcan</li>
+          </ul>
         </div>
         <div class="chat-messages"></div>
         <div>
-            <form id="chat-form">
+          <form id="chat-form">
+            <div class="msg-input">
               <input
                 id="msg"
                 type="text"
                 placeholder="Enter Message"
                 required
                 autocomplete="off"
+                class="input"
               />
-              <button> Send</button>
-            </form>
-          </div>
-        <script
+              <button class="btn">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <script
         src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
         integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
-        crossorigin="anonymous"
-      ></script>
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="events.js"></script>
+        crossorigin="anonymous">
+      </script>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="events.js"></script>
     </body>
 </html>

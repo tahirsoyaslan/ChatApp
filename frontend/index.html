@@ -1,32 +1,33 @@
 <html>
 <head>
-
+    <title>ChatApp - Login to Room</title>
+    <link rel="stylesheet" href="index.css">
 </head>
-
 <body>
+    <div class="form-all">
         <form action="room.html">
-            <div class="form-control">
-                <label for="username">Username</label>
-                <input
+            <div class="fields">
+                <div class="username">
+                    <input
                     type="text"
                     name="username"
                     id="username"
-                    placeholder="Enter username..."
+                    placeholder="Username"
                     required
-                />
-            </div>
-            <div class="form-control">
-                <label for="room">Room</label>
-                <input
+                    />
+                </div>
+                <div class="room">
+                    <input
                     type="text"
                     name="room"
                     id="room"
-                    placeholder="Enter room..."
+                    placeholder="Room"
                     required
-                />
+                    />
+                </div>
             </div>
-            <button type="submit" class="btn">Join Chat</button>
+            <button type="submit" class="join-button">Join Chat</button>
         </form>
+    </div>
 </body>
-
 </html>
