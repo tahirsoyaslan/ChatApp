@@ -23,10 +23,8 @@ io.on('connection', socket => {
     socket.on('joinRoom', ({ username, room }) => {
         const user = addUser(socket.id, username, room);
         socket.join(user.room);
-        const temp = {username: "ChatBot", text: `Hi ${user.username}, welcome to room ${user.room}`};
-        const temp2 = {username: "ChatBot", text: `${user.username} has joined the room`};
+        const temp2 = {username: "ChatBot", text: `${user.username} has joined the chat`};
         
-        socket.emit('message', temp);
         socket.broadcast.to(user.room).emit('message', temp2);
 
         io.to(room).emit('roomData', {

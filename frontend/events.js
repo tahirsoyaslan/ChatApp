@@ -6,15 +6,19 @@ const userList = document.getElementById('users');
 const { username, room } = Qs.parse(location.search, {
     ignoreQueryPrefix: true,
   });
-
-  console.log(username, room);
+if(username > room){
+  newRoom = username+room;
+}
+else{
+  newRoom = room+username;
+}
+console.log(newRoom);
 const socket = io();
 
-socket.emit('joinRoom', { username, room });
+socket.emit('joinRoom', { username, newRoom });
 
-socket.on('roomData', ({ room, users }) => {
-    outputRoomName("Room:" + room);
-    outputUsers(users);
+socket.on('roomData', ({ newRoom, users }) => {
+    outputRoomName(room);
 });
 
 socket.on('message', message => {
@@ -61,8 +65,3 @@ function outputRoomName(room) {
     roomName.innerText = room;
 }
 
-function outputUsers(users) {
-    userList.innerHTML = `
-        ${users.map(user => `<li>${user.username}</li>`).join('')}
-    `;
-}
